@@ -71,7 +71,14 @@ translations = {
         "send": "Надіслати",
 
         "not_specified": "Не вказано",
-        "not_filled": "Не заповнено"
+        "not_filled": "Не заповнено",
+
+        "username": "Ім'я користувача",
+        "email": "Email",
+        "password": "Пароль",
+        "confirm_password": "Підтвердження пароля",
+        "signup": "Зареєструватися",
+        "signin": "Увійти"
     },
 
     "en": {
@@ -117,7 +124,14 @@ translations = {
         "send": "Send",
 
         "not_specified": "Not specified",
-        "not_filled": "Not filled"
+        "not_filled": "Not filled",
+
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "confirm_password": "Confirm password",
+        "signup": "Sign up",
+        "signin": "Sign in"
     }
 }
 

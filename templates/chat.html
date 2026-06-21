@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>💬 Ваші чати</h2>
+<h2>💬 {{ t("your_chats") }}</h2>
 
 {% if users %}
 
@@ -16,7 +16,7 @@
                     <img
                         src="{{ url_for('static', filename='avatars/' + user.avatar) }}"
                         class="avatar-image"
-                        alt="Фото профілю"
+                        alt="{{ t('photo') }}"
                     >
                 {% else %}
                     <div class="avatar small-avatar">
@@ -27,7 +27,7 @@
                 <h3>{{ user.username }}</h3>
 
                 <a href="{{ url_for('chat_with', user_id=user.id) }}" class="btn">
-                    Відкрити чат
+                    {{ t("open_chat") }}
                 </a>
 
             </div>
@@ -38,7 +38,7 @@
 
 {% else %}
 
-    <p>Поки що немає доступних чатів. Спочатку отримайте взаємний збіг.</p>
+    <p>{{ t("no_chats") }}</p>
 
 {% endif %}
 
