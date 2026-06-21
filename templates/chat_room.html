@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>💬 Чат з {{ user.username }}</h2>
+
+<div class="chat-box">
+
+    {% for msg in messages %}
+
+        {% if msg.sender_id == current_user.id %}
+            <div style="text-align:right; color:green;">
+                {{ msg.text }}
+            </div>
+        {% else %}
+            <div style="text-align:left;">
+                {{ msg.text }}
+            </div>
+        {% endif %}
+
+    {% endfor %}
+
+</div>
+
+<form method="POST">
+    <input type="text" name="text" placeholder="Написати повідомлення..." required>
+    <button type="submit">Надіслати</button>
+</form>
+
+{% endblock %}

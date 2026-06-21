@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Редагування профілю</h2>
+
+<form method="POST">
+
+    <label>Факультет</label><br>
+    <input
+        type="text"
+        name="faculty"
+        value="{{ current_user.faculty or '' }}"
+    ><br><br>
+
+    <label>Курс</label><br>
+    <input
+        type="text"
+        name="course"
+        value="{{ current_user.course or '' }}"
+    ><br><br>
+
+    <label>Про себе</label><br>
+    <textarea
+        name="about"
+        rows="5"
+        cols="40"
+    >{{ current_user.about or '' }}</textarea><br><br>
+
+    <label>Інтереси</label><br>
+    <textarea
+        name="interests"
+        rows="4"
+        cols="40"
+    >{{ current_user.interests or '' }}</textarea><br><br>
+
+    <button type="submit">
+        Зберегти
+    </button>
+
+</form>
+
+{% endblock %}

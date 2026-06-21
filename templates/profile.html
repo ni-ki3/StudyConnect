@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Мій профіль</h2>
+
+<p><strong>Ім'я:</strong> {{ current_user.username }}</p>
+
+<p><strong>Email:</strong> {{ current_user.email }}</p>
+
+<p><strong>Факультет:</strong>
+    {{ current_user.faculty or "Не вказано" }}
+</p>
+
+<p><strong>Курс:</strong>
+    {{ current_user.course or "Не вказано" }}
+</p>
+
+<p><strong>Про себе:</strong>
+    {{ current_user.about or "Не заповнено" }}
+</p>
+
+<p><strong>Інтереси:</strong>
+    {{ current_user.interests or "Не вказано" }}
+</p>
+
+<br>
+
+<a href="{{ url_for('edit_profile') }}">
+    <button>Редагувати профіль</button>
+</a>
+
+{% endblock %}

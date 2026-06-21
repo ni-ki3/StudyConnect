@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>StudyConnect</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">StudyConnect</div>
+
+    <nav>
+        <a href="/">Головна</a>
+        <a href="/discover">Пошук</a>
+        <a href="/matches">Збіги</a>
+        <a href="/profile">Профіль</a>
+        <a href="/login">Вхід</a>
+        <a href="/register">Реєстрація</a>
+    </nav>
+</header>
+
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

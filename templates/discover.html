@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Знайди студентів</h2>
+
+<div class="card-container">
+
+    {% for user in users %}
+
+    <div class="card">
+
+        <h3>{{ user.username }}</h3>
+
+        <p><strong>Факультет:</strong> {{ user.faculty or "—" }}</p>
+
+        <p><strong>Курс:</strong> {{ user.course or "—" }}</p>
+
+        <p><strong>Про себе:</strong> {{ user.about or "—" }}</p>
+
+        <p><strong>Інтереси:</strong> {{ user.interests or "—" }}</p>
+
+        <div class="buttons">
+            <button class="like">👍 Підходить</button>
+            <button class="skip">👎 Пропустити</button>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

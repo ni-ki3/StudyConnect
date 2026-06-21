@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+.header {
+    background: #2563eb;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+}
+
+.header a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.container {
+    padding: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>💬 Ваші чати</h2>
+
+{% for user in users %}
+
+<div class="card">
+    <h3>{{ user.username }}</h3>
+
+    <a href="{{ url_for('chat_with', user_id=user.id) }}">
+        Відкрити чат
+    </a>
+</div>
+
+{% endfor %}
+
+{% endblock %}

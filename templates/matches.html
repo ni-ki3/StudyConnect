@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>💖 Ваші матчі</h2>
+
+{% if users %}
+
+    {% for user in users %}
+        <div class="card">
+            <h3>{{ user.username }}</h3>
+            <p>{{ user.interests or "Без інтересів" }}</p>
+            <p>{{ user.about or "Без опису" }}</p>
+        </div>
+    {% endfor %}
+
+{% else %}
+
+<p>Поки що немає збігів 😢</p>
+
+{% endif %}
+
+{% endblock %}
