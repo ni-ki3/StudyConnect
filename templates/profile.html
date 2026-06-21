@@ -2,32 +2,50 @@
 
 {% block content %}
 
-<h2>Мій профіль</h2>
+<div class="profile-card">
 
-<p><strong>Ім'я:</strong> {{ current_user.username }}</p>
+    {% if current_user.avatar %}
+        <img
+            src="{{ url_for('static', filename='avatars/' + current_user.avatar) }}"
+            class="avatar-image"
+            alt="Фото профілю"
+        >
+    {% else %}
+        <div class="avatar">
+            {{ current_user.username[0]|upper }}
+        </div>
+    {% endif %}
 
-<p><strong>Email:</strong> {{ current_user.email }}</p>
+    <h2>{{ current_user.username }}</h2>
 
-<p><strong>Факультет:</strong>
-    {{ current_user.faculty or "Не вказано" }}
-</p>
+    <div class="profile-info">
 
-<p><strong>Курс:</strong>
-    {{ current_user.course or "Не вказано" }}
-</p>
+        <p>
+            <strong>{{ t("faculty") }}</strong><br>
+            {{ current_user.faculty or t("not_specified") }}
+        </p>
 
-<p><strong>Про себе:</strong>
-    {{ current_user.about or "Не заповнено" }}
-</p>
+        <p>
+            <strong>{{ t("course") }}</strong><br>
+            {{ current_user.course or t("not_specified") }}
+        </p>
 
-<p><strong>Інтереси:</strong>
-    {{ current_user.interests or "Не вказано" }}
-</p>
+        <p>
+            <strong>{{ t("about") }}</strong><br>
+            {{ current_user.about or t("not_filled") }}
+        </p>
 
-<br>
+        <p>
+            <strong>{{ t("interests") }}</strong><br>
+            {{ current_user.interests or t("not_specified") }}
+        </p>
 
-<a href="{{ url_for('edit_profile') }}">
-    <button>Редагувати профіль</button>
-</a>
+    </div>
+
+    <a class="btn" href="{{ url_for('edit_profile') }}">
+        ✏️ {{ t("edit_profile") }}
+    </a>
+
+</div>
 
 {% endblock %}

@@ -2,40 +2,55 @@
 
 {% block content %}
 
-<h2>Редагування профілю</h2>
+<h2>{{ t("edit_profile_title") }}</h2>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 
-    <label>Факультет</label><br>
+    <label>{{ t("name") }}</label><br>
+    <input
+        type="text"
+        name="username"
+        value="{{ current_user.username }}"
+        required
+    ><br><br>
+
+    <label>{{ t("photo") }}</label><br>
+    <input
+        type="file"
+        name="avatar"
+        accept="image/*"
+    ><br><br>
+
+    <label>{{ t("faculty") }}</label><br>
     <input
         type="text"
         name="faculty"
         value="{{ current_user.faculty or '' }}"
     ><br><br>
 
-    <label>Курс</label><br>
+    <label>{{ t("course") }}</label><br>
     <input
         type="text"
         name="course"
         value="{{ current_user.course or '' }}"
     ><br><br>
 
-    <label>Про себе</label><br>
+    <label>{{ t("about") }}</label><br>
     <textarea
         name="about"
         rows="5"
         cols="40"
     >{{ current_user.about or '' }}</textarea><br><br>
 
-    <label>Інтереси</label><br>
+    <label>{{ t("interests") }}</label><br>
     <textarea
         name="interests"
         rows="4"
         cols="40"
     >{{ current_user.interests or '' }}</textarea><br><br>
 
-    <button type="submit">
-        Зберегти
+    <button type="submit" class="btn">
+        {{ t("save") }}
     </button>
 
 </form>

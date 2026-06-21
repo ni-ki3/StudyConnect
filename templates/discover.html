@@ -2,32 +2,88 @@
 
 {% block content %}
 
-<h2>Знайди студентів</h2>
+<h2>{{ t("student_search") }}</h2>
+
+<form method="GET" class="search-form">
+
+    <input
+        type="text"
+        name="name"
+        placeholder="{{ t('name') }}"
+        value="{{ name }}"
+    >
+
+    <input
+        type="text"
+        name="faculty"
+        placeholder="{{ t('faculty') }}"
+        value="{{ faculty }}"
+    >
+
+    <input
+        type="text"
+        name="course"
+        placeholder="{{ t('course') }}"
+        value="{{ course }}"
+    >
+
+    <input
+        type="text"
+        name="interests"
+        placeholder="{{ t('interests') }}"
+        value="{{ interests }}"
+    >
+
+    <button type="submit" class="btn">
+        🔍 {{ t("search_btn") }}
+    </button>
+
+    <a href="{{ url_for('discover') }}" class="btn secondary-btn">
+        {{ t("clear") }}
+    </a>
+
+</form>
 
 <div class="card-container">
 
-    {% for user in users %}
+    {% if users %}
 
-    <div class="card">
+        {% for user in users %}
 
-        <h3>{{ user.username }}</h3>
+            <div class="card">
 
-        <p><strong>Факультет:</strong> {{ user.faculty or "—" }}</p>
+                {% if user.avatar %}
+                    <img
+                        src="{{ url_for('static', filename='avatars/' + user.avatar) }}"
+                        class="avatar-image"
+                        alt="{{ t('photo') }}"
+                    >
+                {% else %}
+                    <div class="avatar small-avatar">
+                        {{ user.username[0]|upper }}
+                    </div>
+                {% endif %}
 
-        <p><strong>Курс:</strong> {{ user.course or "—" }}</p>
+                <h3>{{ user.username }}</h3>
 
-        <p><strong>Про себе:</strong> {{ user.about or "—" }}</p>
+                <p><strong>{{ t("faculty") }}:</strong> {{ user.faculty or "—" }}</p>
+                <p><strong>{{ t("course") }}:</strong> {{ user.course or "—" }}</p>
+                <p><strong>{{ t("about") }}:</strong> {{ user.about or "—" }}</p>
+                <p><strong>{{ t("interests") }}:</strong> {{ user.interests or "—" }}</p>
 
-        <p><strong>Інтереси:</strong> {{ user.interests or "—" }}</p>
+                <a href="{{ url_for('like', user_id=user.id) }}" class="btn">
+                    👍 {{ t("suitable") }}
+                </a>
 
-        <div class="buttons">
-            <button class="like">👍 Підходить</button>
-            <button class="skip">👎 Пропустити</button>
-        </div>
+            </div>
 
-    </div>
+        {% endfor %}
 
-    {% endfor %}
+    {% else %}
+
+        <p>{{ t("nothing_found") }} 😢</p>
+
+    {% endif %}
 
 </div>
 

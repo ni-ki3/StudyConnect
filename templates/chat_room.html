@@ -2,29 +2,49 @@
 
 {% block content %}
 
-<h2>💬 Чат з {{ user.username }}</h2>
+<div class="chat-page">
 
-<div class="chat-box">
+    <h2>💬 {{ t("chat_with") }} {{ user.username }}</h2>
 
-    {% for msg in messages %}
+    <div class="chat-box">
 
-        {% if msg.sender_id == current_user.id %}
-            <div style="text-align:right; color:green;">
-                {{ msg.text }}
-            </div>
+        {% if messages %}
+
+            {% for msg in messages %}
+
+                {% if msg.sender_id == current_user.id %}
+                    <div class="message my-message">
+                        {{ msg.text }}
+                    </div>
+                {% else %}
+                    <div class="message other-message">
+                        {{ msg.text }}
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+
         {% else %}
-            <div style="text-align:left;">
-                {{ msg.text }}
-            </div>
+
+            <p class="empty-chat">{{ t("no_messages") }} 👋</p>
+
         {% endif %}
 
-    {% endfor %}
+    </div>
+
+    <form method="POST" class="chat-form">
+        <input
+            type="text"
+            name="text"
+            placeholder="{{ t('write_message') }}"
+            required
+        >
+
+        <button type="submit" class="btn">
+            {{ t("send") }}
+        </button>
+    </form>
 
 </div>
-
-<form method="POST">
-    <input type="text" name="text" placeholder="Написати повідомлення..." required>
-    <button type="submit">Надіслати</button>
-</form>
 
 {% endblock %}

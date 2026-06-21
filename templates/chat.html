@@ -4,16 +4,42 @@
 
 <h2>💬 Ваші чати</h2>
 
-{% for user in users %}
+{% if users %}
 
-<div class="card">
-    <h3>{{ user.username }}</h3>
+    <div class="card-container">
 
-    <a href="{{ url_for('chat_with', user_id=user.id) }}">
-        Відкрити чат
-    </a>
-</div>
+        {% for user in users %}
 
-{% endfor %}
+            <div class="card">
+
+                {% if user.avatar %}
+                    <img
+                        src="{{ url_for('static', filename='avatars/' + user.avatar) }}"
+                        class="avatar-image"
+                        alt="Фото профілю"
+                    >
+                {% else %}
+                    <div class="avatar small-avatar">
+                        {{ user.username[0]|upper }}
+                    </div>
+                {% endif %}
+
+                <h3>{{ user.username }}</h3>
+
+                <a href="{{ url_for('chat_with', user_id=user.id) }}" class="btn">
+                    Відкрити чат
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <p>Поки що немає доступних чатів. Спочатку отримайте взаємний збіг.</p>
+
+{% endif %}
 
 {% endblock %}
